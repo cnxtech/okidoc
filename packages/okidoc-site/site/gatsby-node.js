@@ -66,11 +66,17 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   });
 };
 
-// TODO: cleanup when issue resolved https://github.com/gatsbyjs/gatsby/issues/2792#issuecomment-361944910
+// TODO: review when issue resolved https://github.com/gatsbyjs/gatsby/issues/2792#issuecomment-361944910
 exports.modifyWebpackConfig = ({ config }) => {
-  config._loaders.js.config.include = [
+  const sourceToTranspile = [
     new RegExp(process.cwd() + '/src'),
     new RegExp(process.cwd() + '/.cache'),
   ];
+
+  if (process.env.GATSBY_DOCS_COMPONENTS) {
+    sourceToTranspile.push(process.env.GATSBY_DOCS_COMPONENTS);
+  }
+
+  config._loaders.js.config.include = sourceToTranspile;
   config._loaders.js.config.exclude = undefined;
 };

@@ -42,5 +42,7 @@ if (!site || REQUIRED_CONFIG_PROPS.some(prop => !site.hasOwnProperty(prop))) {
 }
 
 site.docsPath = path.join(SITE_CWD, site.docsPath);
+site.docsComponents =
+  site.docsComponents && path.join(SITE_CWD, site.docsComponents);
 
 module.exports = site;

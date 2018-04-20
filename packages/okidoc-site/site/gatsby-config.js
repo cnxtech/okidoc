@@ -1,5 +1,9 @@
 const site = require('./getSiteConfig');
 
+if (site.docsComponents) {
+  process.env.GATSBY_DOCS_COMPONENTS = site.docsComponents;
+}
+
 if (site.config.algoliaApiKey) {
   process.env.GATSBY_ALGOLIA_API_KEY = site.config.algoliaApiKey;
 }
